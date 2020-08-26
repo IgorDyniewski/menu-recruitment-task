@@ -3,9 +3,9 @@ import styled from 'styled-components'
 
 // Styled components
 const Main = styled.div`
-    width: 100px;
-    height: 1000px;
-    background-color: red;
+    width: 100vw;
+    height: 100vh;
+    background-color: #131313;
 `
 
 const App = () => {
