@@ -5,6 +5,8 @@ import styled from 'styled-components'
 import menuData from './lib/menuData.json'
 import getShortText from './lib/getShortText'
 
+// Constants
+
 // Styled components
 const Main = styled.div`
     width: 100vw;
@@ -37,7 +39,7 @@ const Menu = styled.div`
     position: fixed;
     border: 1px solid #333333;
     overflow: hidden;
-    width: 450px;
+    width: 460px;
     /* height: 600px; */
     border-radius: 6px;
     background-color: transparent;
@@ -58,6 +60,7 @@ const App = (props) => {
                         title={item.displayText}
                         isActive={activeItem === index}
                         onClick={() => (activeItem === index ? setActiveItem(-1) : setActiveItem(index))}
+                        nodes={item.nodes}
                     />
                 ))}
             </Menu>
@@ -91,9 +94,12 @@ const RowHeaderWrapper = styled.div`
 `
 const RowContent = styled.div`
     width: 100%;
-    height: ${(props) => (props.isActive ? '100px' : '0px')};
+    height: ${(props) => (props.isActive ? props.amountOfRows * 150 + 'px' : '0px')};
     /* border: 1px solid blue; */
     transition: height 300ms ease-in;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
 `
 const ShortCutBox = styled.div`
     width: 35px;
@@ -108,6 +114,37 @@ const ShortCutBox = styled.div`
 `
 const Title = styled.span`
     font-size: 18px;
+`
+const NodeMain = styled.div`
+    width: 150px;
+    height: 150px;
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`
+const NodeShortcut = styled.div`
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+    background: rgb(178, 36, 239);
+    background: linear-gradient(
+        90deg,
+        rgba(178, 36, 239, 1) 0%,
+        rgba(168, 48, 241, 1) 17%,
+        rgba(131, 100, 251, 1) 76%,
+        rgba(117, 121, 255, 1) 100%
+    );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+`
+const NodeText = styled.span`
+    font-size: 18px;
+    text-align: center;
+    margin-top: 10px;
 `
 
 const Row = (props) => {
@@ -124,7 +161,14 @@ const Row = (props) => {
                 <ShortCutBox>{getShortText(props.title)}</ShortCutBox>
                 <Title>{props.title}</Title>
             </RowHeaderWrapper>
-            <RowContent isActive={isActive}></RowContent>
+            <RowContent isActive={isActive} amountOfRows={Math.ceil(props.nodes.length / 3)}>
+                {props.nodes.map((node, index) => (
+                    <NodeMain>
+                        <NodeShortcut>{getShortText(node.displayText)}</NodeShortcut>
+                        <NodeText>{node.displayText}</NodeText>
+                    </NodeMain>
+                ))}
+            </RowContent>
         </RowMain>
     )
 }
