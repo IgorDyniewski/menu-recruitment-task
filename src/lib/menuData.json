@@ -1,0 +1,106 @@
+[
+    {
+        "displayText": "Well Performance Analysis",
+        "type": "GROUP",
+        "nodes": [
+            {
+                "displayText": "Inflow Performance",
+                "type": "PAGE",
+                "nodes": []
+            },
+            {
+                "displayText": "Vertical Lift Performance",
+                "type": "PAGE",
+                "nodes": []
+            },
+            {
+                "displayText": "System Nodal",
+                "type": "PAGE",
+                "nodes": []
+            },
+            {
+                "displayText": "Sensitivity",
+                "type": "PAGE",
+                "nodes": []
+            },
+            {
+                "displayText": "Forecasting",
+                "type": "PAGE",
+                "nodes": []
+            },
+            {
+                "displayText": "Bottomhole Pressure",
+                "type": "PAGE",
+                "nodes": []
+            },
+            {
+                "displayText": "Productivity Index",
+                "type": "PAGE",
+                "nodes": []
+            },
+            {
+                "displayText": "Diagnostics",
+                "type": "PAGE",
+                "nodes": []
+            }
+        ]
+    },
+    {
+        "displayText": "Production Optimization",
+        "type": "GROUP",
+        "nodes": [
+            {
+                "displayText": "Event Detection",
+                "type": "PAGE",
+                "nodes": []
+            },
+            {
+                "displayText": "Virtual Metering",
+                "type": "PAGE",
+                "nodes": []
+            }
+        ]
+    },
+    {
+        "displayText": "Reservoir Surveillance",
+        "type": "GROUP",
+        "nodes": [
+            {
+                "displayText": "Flood Efficiency",
+                "type": "PAGE",
+                "nodes": []
+            },
+            {
+                "displayText": "Material Balance",
+                "type": "PAGE",
+                "nodes": []
+            }
+        ]
+    },
+    {
+        "displayText": "Apps",
+        "type": "GROUP",
+        "nodes": [
+            {
+                "displayText": "Graph Network Analysis",
+                "type": "PAGE",
+                "nodes": []
+            },
+            {
+                "displayText": "Optimization Solver",
+                "type": "PAGE",
+                "nodes": []
+            },
+			{
+                "displayText": "ML Proxy Model Builder",
+                "type": "PAGE",
+                "nodes": []
+            },
+            {
+                "displayText": "Time Series Analysis",
+                "type": "PAGE",
+                "nodes": []
+            }
+        ]
+    }
+]
