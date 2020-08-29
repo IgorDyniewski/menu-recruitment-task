@@ -41,6 +41,9 @@ const MenuWrapper = styled.div`
     right: 30px;
     box-shadow: -23px 18px 33px -5px rgba(0, 0, 0, 0.5);
     border-radius: 6px;
+    transition: all 200ms cubic-bezier(0.18, 0.61, 0.58, 1);
+    opacity: ${(props) => (props.isMenuOpen ? 1 : 0)};
+    transform: ${(props) => (props.isMenuOpen ? 'translateY(0px)' : 'translateY(100px)')};
 `
 const Icon = styled.div`
   width: 34px;
@@ -79,14 +82,16 @@ const MenuRow = styled.div`
 const App = (props) => {
     // States
     const [activeItem, setActiveItem] = useState(0)
+    const [isMenuOpen, setIsMenuOpen] = useState(true)
+
     return (
         <Main>
             <MenuRow>
                 <Icon url={'/icon2.png'} style={{ marginRight: '15px' }} />
-                <MenuButton />
+                <MenuButton onClick={() => setIsMenuOpen(!isMenuOpen)} />
                 <Icon url={'/icon1.png'} style={{ marginLeft: '15px', height: '26px', width: '26px' }} />
             </MenuRow>
-            <MenuWrapper>
+            <MenuWrapper isMenuOpen={isMenuOpen}>
                 <Menu>
                     {menuData.map((item, index) => (
                         <Row
@@ -133,7 +138,7 @@ const RowContent = styled.div`
     width: 100%;
     height: ${(props) => (props.isActive ? props.amountOfRows * 140 + 'px' : '0px')};
     /* border: 1px solid blue; */
-    transition: height 300ms ease-in;
+    transition: height 300ms cubic-bezier(0.14, 0.62, 0.58, 1);
     overflow: hidden;
     display: flex;
     flex-wrap: wrap;
