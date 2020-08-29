@@ -37,19 +37,19 @@ const Menu = styled.div`
     top: 80px;
     right: 30px;
     position: fixed;
-    border: 1px solid #333333;
+    border: 1.7px solid #333333;
     overflow: hidden;
     width: 460px;
     /* height: 600px; */
     border-radius: 6px;
     background-color: transparent;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(14px) brightness(80%);
     box-shadow: -23px 18px 33px -5px rgba(0, 0, 0, 0.7);
 `
 
 const App = (props) => {
     // States
-    const [activeItem, setActiveItem] = useState(-1)
+    const [activeItem, setActiveItem] = useState(0)
     return (
         <Main>
             <MenuButton />
@@ -61,6 +61,7 @@ const App = (props) => {
                         isActive={activeItem === index}
                         onClick={() => (activeItem === index ? setActiveItem(-1) : setActiveItem(index))}
                         nodes={item.nodes}
+                        shortText={item.shortText ? item.shortText : undefined}
                     />
                 ))}
             </Menu>
@@ -89,8 +90,9 @@ const RowHeaderWrapper = styled.div`
     :hover {
         background-color: rgba(255, 255, 255, 0.23);
     }
-    transition: background-color 100ms ease-in;
+    transition: all 100ms ease-in;
     cursor: pointer;
+    opacity: ${(props) => (props.isActive ? 1 : 0.5)};
 `
 const RowContent = styled.div`
     width: 100%;
@@ -113,7 +115,7 @@ const ShortCutBox = styled.div`
     border-radius: 10px;
 `
 const Title = styled.span`
-    font-size: 18px;
+    font-size: 19px;
 `
 const NodeMain = styled.div`
     width: 150px;
@@ -121,8 +123,19 @@ const NodeMain = styled.div`
     /* border: 1px solid red; */
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    padding-top: 22px;
+    padding-right: 10px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: all 200ms ease-in;
+    :hover {
+        background-color: rgba(255, 255, 255, 0.07);
+        opacity: 1;
+    }
 `
 const NodeShortcut = styled.div`
     width: 60px;
@@ -158,13 +171,13 @@ const Row = (props) => {
     return (
         <RowMain onClick={() => props.onClick()}>
             <RowHeaderWrapper isActive={isActive}>
-                <ShortCutBox>{getShortText(props.title)}</ShortCutBox>
+                <ShortCutBox>{props.shortText ? props.shortText : getShortText(props.title)}</ShortCutBox>
                 <Title>{props.title}</Title>
             </RowHeaderWrapper>
             <RowContent isActive={isActive} amountOfRows={Math.ceil(props.nodes.length / 3)}>
                 {props.nodes.map((node, index) => (
                     <NodeMain>
-                        <NodeShortcut>{getShortText(node.displayText)}</NodeShortcut>
+                        <NodeShortcut>{node.shortText ? node.shortText : getShortText(node.displayText)}</NodeShortcut>
                         <NodeText>{node.displayText}</NodeText>
                     </NodeMain>
                 ))}

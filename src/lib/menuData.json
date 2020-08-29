@@ -5,6 +5,7 @@
         "nodes": [
             {
                 "displayText": "Inflow Performance",
+                "shortText": "IPR",
                 "type": "PAGE",
                 "nodes": []
             },
@@ -15,21 +16,25 @@
             },
             {
                 "displayText": "System Nodal",
+                "shortText": "SYS",
                 "type": "PAGE",
                 "nodes": []
             },
             {
                 "displayText": "Sensitivity",
+                "shortText": "SEN",
                 "type": "PAGE",
                 "nodes": []
             },
             {
                 "displayText": "Forecasting",
                 "type": "PAGE",
+                "shortText": "FC",
                 "nodes": []
             },
             {
                 "displayText": "Bottomhole Pressure",
+                "shortText": "BHP",
                 "type": "PAGE",
                 "nodes": []
             },
@@ -48,6 +53,7 @@
     {
         "displayText": "Production Optimization",
         "type": "GROUP",
+        "shortText": "PS",
         "nodes": [
             {
                 "displayText": "Event Detection",
@@ -80,6 +86,7 @@
     {
         "displayText": "Apps",
         "type": "GROUP",
+        "shortText": "Apps",
         "nodes": [
             {
                 "displayText": "Graph Network Analysis",
