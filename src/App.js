@@ -11,8 +11,8 @@ import getShortText from './lib/getShortText'
 const Main = styled.div`
     width: 100vw;
     height: 100vh;
-    /* background-color: #131313; */
-    background-image: url('/appScreenshot.png');
+    background-color: #131313;
+    /* background-image: url('/appScreenshot.png'); */
     background-size: contain;
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
@@ -33,18 +33,26 @@ const MenuButton = styled.button`
     overflow: hidden;
     outline: none;
 `
-const Menu = styled.div`
-    top: 80px;
-    right: 30px;
+const MenuWrapper = styled.div`
     position: fixed;
+    top: 30px;
+    right: 30px;
+    box-shadow: -23px 18px 33px -5px rgba(0, 0, 0, 0.7);
+    border-radius: 6px;
+`
+const Menu = styled.div`
+    position: relative;
     border: 1.7px solid #333333;
     overflow: hidden;
-    width: 460px;
+    width: 450px;
     /* height: 600px; */
     border-radius: 6px;
-    background-color: transparent;
-    backdrop-filter: blur(14px) brightness(80%);
-    box-shadow: -23px 18px 33px -5px rgba(0, 0, 0, 0.7);
+
+    background-color: rgba(0, 0, 0, 0.9);
+    @supports (backdrop-filter: blur(14px)) {
+        background-color: transparent;
+        backdrop-filter: blur(14px) brightness(80%);
+    }
 `
 
 const App = (props) => {
@@ -53,18 +61,20 @@ const App = (props) => {
     return (
         <Main>
             <MenuButton />
-            <Menu>
-                {menuData.map((item, index) => (
-                    <Row
-                        key={index}
-                        title={item.displayText}
-                        isActive={activeItem === index}
-                        onClick={() => (activeItem === index ? setActiveItem(-1) : setActiveItem(index))}
-                        nodes={item.nodes}
-                        shortText={item.shortText ? item.shortText : undefined}
-                    />
-                ))}
-            </Menu>
+            <MenuWrapper>
+                <Menu>
+                    {menuData.map((item, index) => (
+                        <Row
+                            key={index}
+                            title={item.displayText}
+                            isActive={activeItem === index}
+                            onClick={() => (activeItem === index ? setActiveItem(-1) : setActiveItem(index))}
+                            nodes={item.nodes}
+                            shortText={item.shortText ? item.shortText : undefined}
+                        />
+                    ))}
+                </Menu>
+            </MenuWrapper>
         </Main>
     )
 }
