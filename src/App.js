@@ -44,7 +44,7 @@ const Menu = styled.div`
     position: relative;
     border: 1.7px solid #333333;
     overflow: hidden;
-    width: 450px;
+    width: 420px;
     /* height: 600px; */
     border-radius: 6px;
 
@@ -85,7 +85,7 @@ const RowMain = styled.div`
     color: white;
 `
 const RowHeaderWrapper = styled.div`
-    height: 70px;
+    height: 60px;
     width: 100%;
     display: block;
     position: relative;
@@ -114,22 +114,22 @@ const RowContent = styled.div`
     flex-wrap: wrap;
 `
 const ShortCutBox = styled.div`
-    width: 35px;
-    height: 35px;
+    width: 33px;
+    height: 33px;
     border: 2px solid white;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-right: 15px;
-    font-size: 15px;
-    border-radius: 10px;
+    font-size: 14px;
+    border-radius: 12px;
 `
 const Title = styled.span`
-    font-size: 19px;
+    font-size: 176x;
 `
 const NodeMain = styled.div`
-    width: 150px;
-    height: 150px;
+    width: 140px;
+    height: 140px;
     /* border: 1px solid red; */
     display: flex;
     flex-direction: column;
@@ -148,9 +148,9 @@ const NodeMain = styled.div`
     }
 `
 const NodeShortcut = styled.div`
-    width: 60px;
-    height: 60px;
-    border-radius: 16px;
+    width: 52px;
+    height: 52px;
+    border-radius: 11px;
     background: rgb(178, 36, 239);
     background: linear-gradient(
         90deg,
@@ -162,7 +162,7 @@ const NodeShortcut = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 25px;
+    font-size: 22px;
 `
 const NodeText = styled.span`
     font-size: 18px;
