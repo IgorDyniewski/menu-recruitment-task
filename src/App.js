@@ -18,11 +18,8 @@ const Main = styled.div`
     font-weight: 700;
 `
 const MenuButton = styled.button`
-    position: fixed;
-    top: 20px;
-    right: 60px;
-    width: 40px;
-    height: 40px;
+    width: 28px;
+    height: 28px;
     background-color: transparent;
     background-image: url('/assets/apps.svg');
     background-position: center;
@@ -32,13 +29,26 @@ const MenuButton = styled.button`
     cursor: pointer;
     overflow: hidden;
     outline: none;
+    opacity: 0.7;
+    transition: opacity 200ms ease-in;
+    :hover {
+        opacity: 1;
+    }
 `
 const MenuWrapper = styled.div`
     position: fixed;
-    top: 30px;
+    top: 55px;
     right: 30px;
-    box-shadow: -23px 18px 33px -5px rgba(0, 0, 0, 0.7);
+    box-shadow: -23px 18px 33px -5px rgba(0, 0, 0, 0.5);
     border-radius: 6px;
+`
+const Icon = styled.div`
+  width: 34px;
+  height: 34px;
+  background-image: url('${(props) => props.url}');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
 `
 const Menu = styled.div`
     position: relative;
@@ -47,12 +57,23 @@ const Menu = styled.div`
     width: 420px;
     /* height: 600px; */
     border-radius: 6px;
-
     background-color: rgba(0, 0, 0, 0.9);
     @supports (backdrop-filter: blur(14px)) {
         background-color: transparent;
         backdrop-filter: blur(14px) brightness(80%);
     }
+`
+const MenuRow = styled.div`
+    position: fixed;
+    width: 100vw;
+    height: 70px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
+    background-color: #2d2d2d;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 60px;
+    box-sizing: border-box;
 `
 
 const App = (props) => {
@@ -60,7 +81,11 @@ const App = (props) => {
     const [activeItem, setActiveItem] = useState(0)
     return (
         <Main>
-            <MenuButton />
+            <MenuRow>
+                <Icon url={'/icon2.png'} style={{ marginRight: '15px' }} />
+                <MenuButton />
+                <Icon url={'/icon1.png'} style={{ marginLeft: '15px', height: '26px', width: '26px' }} />
+            </MenuRow>
             <MenuWrapper>
                 <Menu>
                     {menuData.map((item, index) => (
@@ -106,7 +131,7 @@ const RowHeaderWrapper = styled.div`
 `
 const RowContent = styled.div`
     width: 100%;
-    height: ${(props) => (props.isActive ? props.amountOfRows * 150 + 'px' : '0px')};
+    height: ${(props) => (props.isActive ? props.amountOfRows * 140 + 'px' : '0px')};
     /* border: 1px solid blue; */
     transition: height 300ms ease-in;
     overflow: hidden;
@@ -165,7 +190,7 @@ const NodeShortcut = styled.div`
     font-size: 22px;
 `
 const NodeText = styled.span`
-    font-size: 18px;
+    font-size: 17px;
     text-align: center;
     margin-top: 10px;
 `
