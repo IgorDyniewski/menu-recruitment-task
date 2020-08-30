@@ -60,11 +60,11 @@ const Menu = styled.div`
     width: 420px;
     /* height: 600px; */
     border-radius: 6px;
-    background-color: rgba(20, 20, 20, 0.9);
+    background-color: rgba(40, 40, 40, 0.9);
     backface-visibility: hidden;
     @supports (backdrop-filter: blur(14px)) {
         background-color: transparent;
-        backdrop-filter: blur(14px) brightness(80%);
+        backdrop-filter: blur(12px) brightness(100%);
     }
 `
 const MenuShadowWrapper = styled.div`
@@ -89,11 +89,11 @@ const Arrow = styled.div`
     background-image: ${(props) =>
         props.activeItem === 0
             ? props.isMouseOverFirstItem
-                ? "url('/arrow4.svg')"
-                : "url('/arrow.svg')"
+                ? "url('/arrow2.svg')"
+                : "url('/arrow3.svg')"
             : props.isMouseOverFirstItem
-            ? "url('/arrow3.svg')"
-            : "url('/arrow2.svg')"};
+            ? "url('/arrow4.svg')"
+            : "url('/arrow.svg')"};
     background-position: bottom;
     background-size: contain;
     background-repeat: no-repeat;
@@ -101,6 +101,7 @@ const Arrow = styled.div`
     margin-left: 328px;
     margin-bottom: -2px;
     z-index: 10;
+    transition: background-image 100ms ease-in;
     /* border: 1px solid red; */
 `
 
