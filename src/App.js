@@ -37,10 +37,10 @@ const MenuButton = styled.button`
 `
 const MenuWrapper = styled.div`
     position: fixed;
-    top: 55px;
+    top: 45px;
     right: 30px;
-    box-shadow: -23px 18px 33px -5px rgba(0, 0, 0, 0.5);
-    border-radius: 6px;
+    /* box-shadow: -23px 18px 33px -5px rgba(0, 0, 0, 0.5);
+    border-radius: 6px; */
     transition: all 300ms cubic-bezier(0.18, 0.61, 0.58, 1);
     opacity: ${(props) => (props.isMenuOpen ? 1 : 0)};
     transform: ${(props) => (props.isMenuOpen ? 'translateY(0px)' : 'translateY(100px)')};
@@ -67,6 +67,10 @@ const Menu = styled.div`
         backdrop-filter: blur(14px) brightness(80%);
     }
 `
+const MenuShadowWrapper = styled.div`
+    box-shadow: -23px 18px 33px -5px rgba(0, 0, 0, 0.5);
+    border-radius: 6px;
+`
 const MenuRow = styled.div`
     position: fixed;
     width: 100vw;
@@ -79,11 +83,32 @@ const MenuRow = styled.div`
     padding-right: 60px;
     box-sizing: border-box;
 `
+const Arrow = styled.div`
+    width: 20px;
+    height: 20px;
+    background-image: ${(props) =>
+        props.activeItem === 0
+            ? props.isMouseOverFirstItem
+                ? "url('/arrow4.svg')"
+                : "url('/arrow.svg')"
+            : props.isMouseOverFirstItem
+            ? "url('/arrow3.svg')"
+            : "url('/arrow2.svg')"};
+    background-position: bottom;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: relative;
+    margin-left: 328px;
+    margin-bottom: -2px;
+    z-index: 10;
+    /* border: 1px solid red; */
+`
 
 const App = (props) => {
     // States
     const [activeItem, setActiveItem] = useState(0)
     const [isMenuOpen, setIsMenuOpen] = useState(true)
+    const [isMouseOverFirstItem, setIsMouseOverFirstItem] = useState(false)
 
     return (
         <Main>
@@ -93,18 +118,27 @@ const App = (props) => {
                 <Icon url={'/icon1.png'} style={{ marginLeft: '15px', height: '26px', width: '26px' }} />
             </MenuRow>
             <MenuWrapper isMenuOpen={isMenuOpen}>
-                <Menu>
-                    {menuData.map((item, index) => (
-                        <Row
-                            key={index}
-                            title={item.displayText}
-                            isActive={activeItem === index}
-                            onClick={() => (activeItem === index ? setActiveItem(-1) : setActiveItem(index))}
-                            nodes={item.nodes}
-                            shortText={item.shortText ? item.shortText : undefined}
-                        />
-                    ))}
-                </Menu>
+                <Arrow activeItem={activeItem} isMouseOverFirstItem={isMouseOverFirstItem} />
+                <MenuShadowWrapper>
+                    <Menu>
+                        {menuData.map((item, index) => (
+                            <Row
+                                key={index}
+                                title={item.displayText}
+                                isActive={activeItem === index}
+                                onClick={() => (activeItem === index ? setActiveItem(-1) : setActiveItem(index))}
+                                nodes={item.nodes}
+                                shortText={item.shortText ? item.shortText : undefined}
+                                onMouseEnter={() => {
+                                    if (index === 0) setIsMouseOverFirstItem(true)
+                                }}
+                                onMouseLeave={() => {
+                                    if (index === 0) setIsMouseOverFirstItem(false)
+                                }}
+                            />
+                        ))}
+                    </Menu>
+                </MenuShadowWrapper>
             </MenuWrapper>
         </Main>
     )
@@ -211,7 +245,11 @@ const Row = (props) => {
 
     return (
         <RowMain onClick={() => props.onClick()}>
-            <RowHeaderWrapper isActive={isActive}>
+            <RowHeaderWrapper
+                isActive={isActive}
+                onMouseEnter={props.onMouseEnter ? props.onMouseEnter : null}
+                onMouseLeave={props.onMouseLeave ? props.onMouseLeave : null}
+            >
                 <ShortCutBox>{props.shortText ? props.shortText : getShortText(props.title)}</ShortCutBox>
                 <Title>{props.title}</Title>
             </RowHeaderWrapper>
