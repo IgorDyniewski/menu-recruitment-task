@@ -12,7 +12,7 @@ const Main = styled.div`
     width: 100vw;
     height: 100vh;
     background-color: #131313;
-    /* background-image: url('/appScreenshot.png'); */
+    background-image: url('/appScreenshot.png');
     background-size: contain;
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
@@ -41,7 +41,7 @@ const MenuWrapper = styled.div`
     right: 30px;
     box-shadow: -23px 18px 33px -5px rgba(0, 0, 0, 0.5);
     border-radius: 6px;
-    transition: all 200ms cubic-bezier(0.18, 0.61, 0.58, 1);
+    transition: all 300ms cubic-bezier(0.18, 0.61, 0.58, 1);
     opacity: ${(props) => (props.isMenuOpen ? 1 : 0)};
     transform: ${(props) => (props.isMenuOpen ? 'translateY(0px)' : 'translateY(100px)')};
 `
@@ -60,7 +60,8 @@ const Menu = styled.div`
     width: 420px;
     /* height: 600px; */
     border-radius: 6px;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(20, 20, 20, 0.9);
+    backface-visibility: hidden;
     @supports (backdrop-filter: blur(14px)) {
         background-color: transparent;
         backdrop-filter: blur(14px) brightness(80%);
